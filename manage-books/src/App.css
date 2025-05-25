@@ -1,0 +1,118 @@
+/* General App Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.App {
+  max-width: 960px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.App-header {
+  background-color: #333;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.App-header h1 {
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* BookForm Styles */
+form {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+form h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input[type="text"] {
+  width: calc(100% - 22px); /* Account for padding and border */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensures padding doesn't add to width */
+}
+
+/* Button Styles */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button[type="button"] {
+  background-color: #6c757d; /* Secondary button color */
+}
+
+button[type="button"]:hover {
+  background-color: #545b62;
+}
+
+/* BookList Styles */
+.BookList > p { /* "No books available" message */
+  text-align: center;
+  font-style: italic;
+}
+
+/* BookItem Styles (inside BookItem.js, but App.css can target it if needed, or we can make a BookItem.css) */
+/* For now, we assume BookItem.js applies its own styles or uses inline styles as previously defined.
+   If we want global styles for BookItem from App.css:
+   .BookItem-container {
+     border: 1px solid #ccc;
+     margin: 10px 0;
+     padding: 15px;
+     border-radius: 5px;
+     background-color: #fff;
+   }
+   .BookItem-container h3 {
+     margin-top: 0;
+   }
+   .BookItem-container button {
+     margin-top: 10px;
+   }
+*/
