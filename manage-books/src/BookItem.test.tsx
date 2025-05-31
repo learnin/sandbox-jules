@@ -1,17 +1,27 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+// import '@testing-library/jest-dom'; // Should be available globally via vitest.setup.ts
 import BookItem from './BookItem';
 
+// Assuming Book interface is defined in App.tsx or a shared types file
+// { id: number; title: string; author: string; year: number; }
+interface Book {
+  id: number;
+  title: string;
+  author: string;
+  year: number;
+}
+
 describe('BookItem', () => {
-  const mockBook = {
+  const mockBook: Book = {
     id: 1,
     title: 'Sample Book Title',
     author: 'Sample Author',
-    isbn: '123-4567890123',
+    year: 2023, // Changed from isbn to year
   };
-  const mockOnEdit = jest.fn();
-  const mockOnDelete = jest.fn();
+  const mockOnEdit = vi.fn<(book: Book) => void>();
+  const mockOnDelete = vi.fn<(id: number) => void>();
 
   beforeEach(() => {
     mockOnEdit.mockClear();
@@ -23,8 +33,8 @@ describe('BookItem', () => {
     
     expect(screen.getByText(mockBook.title)).toBeInTheDocument();
     expect(screen.getByText(`Author: ${mockBook.author}`)).toBeInTheDocument();
-    expect(screen.getByText(`ISBN: ${mockBook.isbn}`)).toBeInTheDocument();
-    expect(screen.getByText(`ID: ${mockBook.id}`)).toBeInTheDocument();
+    expect(screen.getByText(`Year: ${mockBook.year}`)).toBeInTheDocument(); // Changed from ISBN to Year
+    expect(screen.getByText(`ID: ${mockBook.id}`)).toBeInTheDocument(); // ID display might be part of your component
     expect(screen.getByRole('button', { name: /edit/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /delete/i })).toBeInTheDocument();
   });
@@ -48,6 +58,7 @@ describe('BookItem', () => {
   });
 
   it('renders "No book data!" if book prop is null or undefined', () => {
+    // @ts-expect-error testing null case for book prop
     render(<BookItem book={null} onEdit={mockOnEdit} onDelete={mockOnDelete} />);
     expect(screen.getByText('No book data!')).toBeInTheDocument();
   });
